@@ -49,3 +49,13 @@ mariadb -u root -p
 CREATE USER 'dbuser'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'%' WITH GRANT OPTION;
 exit
+ufw allow 3306/tcp
+vi /etc/mysql/mariadb.conf.d/50-server.cnf
+********* edit
+user=dbuser
+...
+bind-address = 0.0.0.0
+*********
+
+# after this activity, edit the firewall rules for the GCP project, and add rules for ingress/egress
+# from all ips to port 3306 of the instance. post this mariadb must be accessible outside the vm
