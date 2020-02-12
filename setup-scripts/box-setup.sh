@@ -59,3 +59,12 @@ bind-address = 0.0.0.0
 
 # after this activity, edit the firewall rules for the GCP project, and add rules for ingress/egress
 # from all ips to port 3306 of the instance. post this mariadb must be accessible outside the vm
+
+#add user access to boxes
+useradd <username>
+passwd <username>
+mkdir /home/<username>
+mkdir /home/<username>/.ssh
+vi /home/<username>/.ssh/authorized_keys
+#paste public key in the file and exit
+usermod -aG sudo <username>
